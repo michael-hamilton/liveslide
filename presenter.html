@@ -5,7 +5,7 @@
     <title>chute presenter</title>
 </head>
 <body>
-<a id="control-back" href="javascript:;">Back</a>
+<a id="control-prev" href="javascript:;">Prev</a>
 <a id="control-next" href="javascript:;">Next</a>
 
 <script src="/jquery/jquery.min.js"></script>
@@ -13,8 +13,8 @@
 <script>
     var socket = io();
 
-    $('#control-back').click(function() {
-        socket.emit('back');
+    $('#control-prev').click(function() {
+        socket.emit('prev');
     });
 
     $('#control-next').click(function() {

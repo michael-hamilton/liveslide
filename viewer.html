@@ -2,20 +2,41 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+
     <title>chute viewer</title>
+
+    <link rel="stylesheet" href="/css/reveal.css">
+    <link rel="stylesheet" href="/css/theme/night.css">
 </head>
 <body>
-<h1>chute viewer</h1>
 
+<div class="reveal">
+    <div class="slides">
+        <section>Slide 1</section>
+        <section>Slide 2</section>
+        <section>Slide 3</section>
+        <section>Slide 4</section>
+        <section>Slide 5</section>
+    </div>
+</div>
+
+<script src="/js/reveal.js"></script>
 <script src="/socket.io/socket.io.js"></script>
 <script>
+    Reveal.initialize({
+        transition: 'fade',
+        transitionSpeed: 'slow',
+        controls: false
+    });
+
     var socket = io();
-    socket.on('back', function(msg) {
-        console.log('back');
+    socket.on('prev', function(msg) {
+        Reveal.prev();
     });
 
     socket.on('next', function(msg) {
-        console.log('next');
+        Reveal.next();
     });
 </script>
 </body>
