@@ -1,0 +1,18 @@
+{
+  "name": "chute",
+  "description": "Realtime presentation application",
+  "main": "app.js",
+  "authors": [
+    "Michael Hamilton <michaelhamilton626@gmail.com>"
+  ],
+  "license": "MIT",
+  "homepage": "",
+  "private": true,
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "test",
+    "tests"
+  ]
+}

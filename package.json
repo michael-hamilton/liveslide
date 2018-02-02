@@ -1,0 +1,14 @@
+{
+  "name": "chute",
+  "version": "0.0.0",
+  "description": "Realtime presentation application",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "MIT",
+  "dependencies": {
+    "bower": "^1.8.2"
+  }
+}
