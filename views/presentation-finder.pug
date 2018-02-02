@@ -1,0 +1,7 @@
+extends layout
+block content
+    h1 chute
+    form(method="post" action="/view")
+        label Presentation ID
+        input(type="text" name="presentationID")
+        input(type="submit" value="View")
