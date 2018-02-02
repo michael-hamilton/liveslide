@@ -7,10 +7,15 @@ Reveal.initialize({
 });
 
 var socket = io();
+
 socket.on('prev', function(msg) {
     Reveal.prev();
 });
 
 socket.on('next', function(msg) {
     Reveal.next();
+});
+
+socket.on('index', function(msg) {
+    Reveal.slide(msg);
 });

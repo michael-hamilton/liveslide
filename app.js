@@ -5,6 +5,8 @@ var io = require('socket.io')(http);
 var path = require('path');
 var bodyParser = require('body-parser');
 var users = 0;
+var currentSlide = 0;
+var slideCount= 5;
 
 app.set('view engine', 'pug');
 
@@ -34,12 +36,21 @@ io.on('connection', function(socket) {
     users++;
     io.emit('users', users);
 
+    socket.emit('index', currentSlide);
+
+    socket.on('reset', function(msg) {
+        currentSlide = 0;
+        io.emit('index', currentSlide);
+    });
+
     socket.on('prev', function(msg) {
-        io.emit('prev');
+        currentSlide>0 ? currentSlide-- : false;
+        io.emit('index', currentSlide);
     });
 
     socket.on('next', function(msg) {
-        io.emit('next');
+        currentSlide<slideCount-1 ? currentSlide++ : false;
+        io.emit('index', currentSlide);
     });
 
     socket.on('disconnect', function() {

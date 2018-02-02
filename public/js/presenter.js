@@ -9,8 +9,15 @@ $(document).ready(function() {
         socket.emit('next');
     });
 
+    $('#control-reset').click(function() {
+        socket.emit('reset');
+    });
+
     socket.on('users', function(msg) {
-        console.log(msg);
         $('#user-count').text(msg);
+    });
+
+    socket.on('index', function(msg) {
+        $('#current-slide').text(msg+1);
     });
 });
