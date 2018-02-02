@@ -8,4 +8,9 @@ $(document).ready(function() {
     $('#control-next').click(function() {
         socket.emit('next');
     });
+
+    socket.on('users', function(msg) {
+        console.log(msg);
+        $('#user-count').text(msg);
+    });
 });

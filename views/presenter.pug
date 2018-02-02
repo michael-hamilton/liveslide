@@ -3,11 +3,18 @@ head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     title chute presenter
+    link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/presenter.css")
 
 body
-    a(id="control-prev" href="javascript:;") Prev
-    a(id="control-next" href="javascript:;") Next
+    h1.display-1.text-center chute
+    div.controls.d-flex.flex-row
+        div
+            a(id="control-prev" class="btn btn-secondary btn-lg p-2 m-1" href="javascript:;") Prev
+            a(id="control-next" class="btn btn-secondary btn-lg p-2 m-1" href="javascript:;") Next
+            a(id="control-reset" class="btn btn-danger btn-lg p-2 m-1" href="javascript:;") Reset
+            p.samp.m-1: samp #[span#user-count 0] users connected
 
-    script(src="/jquery/jquery.min.js")
+    script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/socket.io/socket.io.js")
     script(src="/js/presenter.js")

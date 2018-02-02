@@ -4,11 +4,12 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var bodyParser = require('body-parser');
+var users = 0;
 
 app.set('view engine', 'pug');
 
 app.use(express.static(path.join(__dirname, 'public')));
-app.use('/jquery', express.static(__dirname + '/bower_components/jquery/dist/'));
+app.use('/bower_components', express.static(__dirname + '/bower_components'));
 
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -30,12 +31,20 @@ app.get('/view/:id', function(req, res) {
 });
 
 io.on('connection', function(socket) {
+    users++;
+    io.emit('users', users);
+
     socket.on('prev', function(msg) {
         io.emit('prev');
     });
 
     socket.on('next', function(msg) {
         io.emit('next');
+    });
+
+    socket.on('disconnect', function() {
+        users--;
+        io.emit('users', users);
     });
 });
 
