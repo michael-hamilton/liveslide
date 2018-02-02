@@ -10,16 +10,6 @@
 
 <script src="/jquery/jquery.min.js"></script>
 <script src="/socket.io/socket.io.js"></script>
-<script>
-    var socket = io();
-
-    $('#control-prev').click(function() {
-        socket.emit('prev');
-    });
-
-    $('#control-next').click(function() {
-        socket.emit('next');
-    });
-</script>
+<script src="/js/presenter.js"></script>
 </body>
 </html>
