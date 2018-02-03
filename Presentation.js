@@ -12,7 +12,7 @@ class Presentation {
         this.nsp.on('connection', function (socket) {
             self.clients++;
 
-            socket.emit('clients', self.clients);
+            self.nsp.emit('clients', self.clients);
 
             self.loadCurrentSlide();
 
@@ -30,7 +30,7 @@ class Presentation {
 
             socket.on('disconnect', function () {
                 self.clients--;
-                socket.emit('clients', self.clients);
+                self.nsp.emit('clients', self.clients);
             });
         });
     }
