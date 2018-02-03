@@ -13,8 +13,8 @@ $(document).ready(function() {
         socket.emit('reset');
     });
 
-    socket.on('users', function(msg) {
-        $('#user-count').text(msg);
+    socket.on('clients', function(msg) {
+        $('#client-count').text(msg);
     });
 
     socket.on('index', function(msg) {
