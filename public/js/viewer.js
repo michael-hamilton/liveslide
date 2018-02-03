@@ -6,7 +6,7 @@ Reveal.initialize({
     progress: false
 });
 
-var socket = io();
+var socket = io('/' + document.getElementById('namespace').value);
 
 socket.on('prev', function(msg) {
     Reveal.prev();

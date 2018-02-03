@@ -1,5 +1,5 @@
 $(document).ready(function() {
-    var socket = io();
+    var socket = io('/' + document.getElementById('namespace').value);
 
     $('#control-prev').click(function() {
         socket.emit('prev');

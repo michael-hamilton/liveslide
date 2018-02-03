@@ -8,6 +8,7 @@ head
     link(rel="stylesheet" type="text/css" href="/css/presenter.css")
 
 body
+    input(id="namespace" type="hidden" value=nsp)
     h1.display-1.text-center liveslide
         sub.h6 beta
     div.controls
@@ -31,9 +32,10 @@ body
                 div.col-md-12
                     p.samp.m-1.align-left: samp #[span#client-count 0] clients connected
                     p.samp.m-1.align-right: samp.text-right current slide: #[span#current-slide 0]
+                    p.samp.m-1.align-right: samp.text-right presentation id: #{nsp}
 
     div.embed-responsive.embed-responsive-16by9
-        iframe(src="/view/1").embed-responsive-item
+        iframe(src="/view/abc").embed-responsive-item
 
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/socket.io/socket.io.js")

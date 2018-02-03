@@ -12,11 +12,9 @@ module.exports = function (io) {
         res.redirect('/view/' + req.body.presentationID);
     });
 
-    router.get('/view/:id', function (req, res) {
-        res.render('viewer', {});
-        presentation.connection();
+    router.get('/view/:presentationID', function (req, res) {
+        res.render('viewer', {nsp:req.params.presentationID});
     });
-
 
     router.get('/present', function (req, res) {
         res.render('presentation-starter', {});
@@ -26,12 +24,9 @@ module.exports = function (io) {
         res.redirect('/present/' + req.body.presentationID);
     });
 
-    router.get('/present/:id', function (req, res) {
-        presentation = new Presentation(io, req.body.id, 5);
-        presentation.connection(function() {
-            presentation.presenter();
-        });
-        res.render('presenter', {});
+    router.get('/present/:presentationID', function (req, res) {
+        presentation = new Presentation(io, req.params.presentationID, 5);
+        res.render('presenter', {nsp:req.params.presentationID});
     });
 
     return router;
