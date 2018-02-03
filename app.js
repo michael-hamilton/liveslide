@@ -19,6 +19,6 @@ app.use(bodyParser.json());
 
 app.use('/', routes);
 
-http.listen(3000, function() {
-    console.log("Server running on *:3000");
+http.listen(process.env.PORT, function() {
+    console.log("Server running on *:" + process.env.PORT);
 });
