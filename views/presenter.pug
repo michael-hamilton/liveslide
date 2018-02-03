@@ -3,18 +3,36 @@ head
     meta(charset="UTF-8")
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     title chute presenter
+    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
     link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
     link(rel="stylesheet" type="text/css" href="/css/presenter.css")
 
 body
-    h1.display-1.text-center chute
-    div.controls.d-flex.flex-row
-        div
-            a(id="control-prev" class="btn btn-secondary btn-lg p-2 m-1" href="javascript:;") Prev
-            a(id="control-next" class="btn btn-secondary btn-lg p-2 m-1" href="javascript:;") Next
-            a(id="control-reset" class="btn btn-danger btn-lg p-2 m-1" href="javascript:;") Reset
-            p.samp.m-1: samp #[span#user-count 0] users connected
-            p.samp.m-1: samp current slide: #[span#current-slide 0]
+    h1.display-1.text-center liveslide
+    div.controls
+        div.container-fluid
+            div.row
+                div.col-md-12
+                    div.d-flex.flex-row
+                        a(id="control-prev" class="btn btn-secondary btn-lg p-2 m-1" href="javascript:;")
+                            span(aria-hidden="true").oi.oi-arrow-left
+                            | &nbsp;
+                            | prev
+                        a(id="control-next" class="btn btn-secondary btn-lg p-2 m-1" href="javascript:;")
+                            span(aria-hidden="true").oi.oi-arrow-right
+                            | &nbsp;
+                            | next
+                        a(id="control-reset" class="btn btn-danger btn-lg p-2 m-1" href="javascript:;")
+                            span(aria-hidden="true").oi.oi-action-undo
+                            | &nbsp;
+                            | reset
+            div.row
+                div.col-md-12
+                    p.samp.m-1.align-left: samp #[span#user-count 0] clients connected
+                    p.samp.m-1.align-right: samp.text-right current slide: #[span#current-slide 0]
+
+    div.embed-responsive.embed-responsive-16by9
+        iframe(src="/view/1").embed-responsive-item
 
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/socket.io/socket.io.js")
