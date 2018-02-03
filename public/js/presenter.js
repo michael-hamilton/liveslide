@@ -20,4 +20,19 @@ $(document).ready(function() {
     socket.on('index', function(msg) {
         $('#current-slide').text(msg+1);
     });
+
+    $(document).keypress(function(e) {
+        switch(e.which) {
+            case 32: //space (not working on ios)
+                socket.emit('prev');
+            break;
+
+            case 13: //return
+                socket.emit('next');
+            break;
+
+            default: return;
+        }
+        e.preventDefault();
+    });
 });
