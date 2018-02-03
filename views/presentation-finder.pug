@@ -1,7 +1,21 @@
-extends layout
-block content
-    h1 chute
-    form(method="post" action="/view")
-        label Presentation ID
-        input(type="text" name="presentationID")
-        input(type="submit" value="View")
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    title chute
+    link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/finder.css")
+
+body
+    div.container-fluid
+        div.row
+            div.col-md-12
+                h1.display-1.text-center liveslide
+                hr
+
+        div.row
+            div.col-md-6.offset-md-3
+                form(method="post" action="/view").mx-auto
+                    div.form-group
+                        input(type="text" name="presentationID" placeholder="enter a presentation id").form-control.form-control-lg
+                    div.form-group
+                        input(type="submit" value="view").form-control.btn.btn-dark
