@@ -8,12 +8,22 @@ module.exports = function (io) {
         res.render('presentation-finder', {});
     });
 
+    router.get('/view', function (req, res) {
+        res.render('presentation-finder', {});
+    });
+
     router.post('/view', function (req, res) {
         res.redirect('/view/' + req.body.presentationID);
     });
 
     router.get('/view/:presentationID', function (req, res) {
-        res.render('viewer', {nsp:req.params.presentationID});
+        if(presentations.find(p => p.presentationID == req.params.presentationID)) {
+            res.render('viewer', {nsp:req.params.presentationID});
+        }
+        else {
+            req.flash('error', 'could not find a presentation with that id');
+            res.redirect('/view');
+        }
     });
 
     router.get('/present', function (req, res) {
@@ -25,7 +35,7 @@ module.exports = function (io) {
     });
 
     router.get('/present/:presentationID', function (req, res) {
-        presentation = new Presentation(io, req.params.presentationID, 5);
+        presentations.push(new Presentation(io, req.params.presentationID, 5));
         res.render('presenter', {nsp:req.params.presentationID});
     });
 
