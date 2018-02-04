@@ -7,13 +7,9 @@ head
     link(rel="stylesheet" type="text/css" href="/css/finder.css")
 
 body
-    div.container-fluid
-        div.row
-            div.col-md-12
-                h1.display-1.text-center liveslide
-                    sub.h6 beta
-                hr
+    include partials/app-header
 
+    div.container-fluid
         div.row
             div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
                 form(method="post" action="/present").mx-auto

@@ -39,5 +39,9 @@ module.exports = function (io) {
         res.render('presenter', {nsp:req.params.presentationID});
     });
 
+    router.get('/make', function (req, res) {
+        res.render('maker', {});
+    });
+
     return router;
 };
