@@ -7,6 +7,7 @@ class Presentation {
         this.slideCount = slideCount;
         this.currentSlide = 0;
         this.ready = false;
+        this.paused = true;
 
         const self = this;
 
@@ -20,6 +21,7 @@ class Presentation {
             socket.on('ready', function() {
                 self.ready = true;
                 self.nsp.emit('ready');
+                self.paused ? self.nsp.emit('pause') : self.nsp.emit('resume');
             });
 
             socket.on('prev', function() {
@@ -28,6 +30,14 @@ class Presentation {
 
             socket.on('next', function() {
                 self.nextSlide();
+            });
+
+            socket.on('pause', function() {
+                self.pause();
+            });
+
+            socket.on('resume', function() {
+                self.resume();
             });
 
             socket.on('reset', function() {
@@ -46,8 +56,13 @@ class Presentation {
     }
 
     pause() {
-        this.ready = false;
+        this.paused = true;
         this.nsp.emit('pause');
+    }
+
+    resume() {
+        this.paused = false;
+        this.nsp.emit('resume');
     }
 
     previousSlide() {

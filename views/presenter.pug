@@ -28,6 +28,14 @@ body
                             span(aria-hidden="true").oi.oi-action-undo
                             | &nbsp;
                             | reset
+                        a(id="control-pause" class="btn btn-warning btn-lg p-2 m-1" href="javascript:;")
+                            span(aria-hidden="true").oi.oi-media-pause
+                            | &nbsp;
+                            | pause
+                        a(id="control-resume" class="btn btn-success btn-lg p-2 m-1" href="javascript:;")
+                            span(aria-hidden="true").oi.oi-media-play
+                            | &nbsp;
+                            | resume
             div.row
                 div.col-md-12
                     p.samp.m-1.align-left: samp #[span#client-count 0] clients connected

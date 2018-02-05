@@ -19,6 +19,10 @@ socket.on('pause', function() {
     Reveal.togglePause(true);
 });
 
+socket.on('resume', function() {
+    Reveal.togglePause(false);
+});
+
 socket.on('prev', function(msg) {
     Reveal.prev();
 });

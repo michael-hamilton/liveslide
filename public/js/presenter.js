@@ -15,6 +15,14 @@ $(document).ready(function() {
         socket.emit('reset');
     });
 
+    $('#control-pause').click(function() {
+        socket.emit('pause');
+    });
+
+    $('#control-resume').click(function() {
+        socket.emit('resume');
+    });
+
     socket.on('clients', function(msg) {
         $('#client-count').text(msg);
     });
