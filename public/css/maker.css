@@ -1,0 +1,36 @@
+.toolbar {
+  background-color: #efefef;
+  padding: 10px; }
+
+body {
+  display: flex;
+  flex-flow: column; }
+
+.workspace {
+  height: 100%;
+  flex: 1;
+  display: flex;
+  flex-flow: row; }
+
+.slides-wrapper {
+  flex: 1;
+  min-width: 200px;
+  width: 20%;
+  border-right: 2px solid #efefef;
+  padding: 12px;
+  overflow: scroll; }
+
+.slides-wrapper .slide {
+  border: 1px solid #efefef;
+  height: 25%;
+  min-height: 120px;
+  width: 100%;
+  max-width: 240px;
+  margin-bottom: 12px;
+  margin-left: auto;
+  margin-right: auto; }
+
+.editor {
+  flex: 3; }
+
+/*# sourceMappingURL=maker.css.map */

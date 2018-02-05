@@ -1,0 +1,42 @@
+html(lang="en")
+head
+    meta(charset="UTF-8")
+    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
+    title liveslide
+    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/bower_components/simditor/styles/simditor.css")
+    link(rel="stylesheet" type="text/css" href="/css/maker.css")
+
+body
+    include partials/app-header
+
+    div.container
+        div.row
+            div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
+                if messages.error
+                    div.alert.alert-danger= messages.error
+                if messages.success
+                    div.alert.alert-success= messages.success
+                form(method="post" action="/make2")
+                    div.form-group
+                        label presentation id
+                        input.form-control(type="text" placeholder="enter presentation id" name="presentationID")
+                    div.form-group
+                        label slide count
+                        input.form-control(type="number" placeholder="enter number of slides" name="slideCount")
+                    div.form-group
+                        label slide data
+                        textarea.form-control(type="text" placeholder="enter slide data" name="slideData" rows="10")
+                    div.form-group.text-center
+                        button.btn.btn-primary(type="submit")
+                            span(aria-hidden="true").oi.oi-hard-drive
+                            | &nbsp;
+                            | save
+
+    script(src="/bower_components/jquery/dist/jquery.min.js")
+    script(src="/bower_components/simple-module/lib/module.js")
+    script(src="/bower_components/simple-hotkeys/lib/hotkeys.js")
+    script(src="/bower_components/simditor/lib/simditor.js")
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/maker.js")

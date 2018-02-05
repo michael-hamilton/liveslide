@@ -9,8 +9,8 @@ head
 body
     input(id="namespace" type="hidden" value=nsp)
     div(class="reveal")
-        div(class="slides")
-            include slides
+        div(class="slides") !{slideData}
+
 
 script(src="/js/reveal.js")
 script(src="/socket.io/socket.io.js")
