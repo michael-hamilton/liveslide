@@ -8,10 +8,13 @@ var routes = require('./routes.js')(io);
 var session = require('express-session');
 var flash = require('express-flash');
 var cookieParser = require('cookie-parser');
+var mongoose = require('mongoose');
 var sessionStore = new session.MemoryStore;
 
 var presentations = [];
 global.presentations = presentations;
+
+mongoose.connect(process.env.MONGODB_URL);
 
 app.set('view engine', 'pug');
 
