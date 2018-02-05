@@ -6,6 +6,7 @@ class Presentation {
         this.clients = 0;
         this.slideCount = slideCount;
         this.currentSlide = 0;
+        this.ready = false;
 
         const self = this;
 
@@ -15,6 +16,11 @@ class Presentation {
             self.nsp.emit('clients', self.clients);
 
             self.loadCurrentSlide();
+
+            socket.on('ready', function() {
+                self.ready = true;
+                self.nsp.emit('ready');
+            });
 
             socket.on('prev', function() {
                 self.previousSlide();
@@ -37,6 +43,11 @@ class Presentation {
 
     loadCurrentSlide() {
         this.nsp.emit('index', this.currentSlide);
+    }
+
+    pause() {
+        this.ready = false;
+        this.nsp.emit('pause');
     }
 
     previousSlide() {

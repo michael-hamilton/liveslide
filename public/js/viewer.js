@@ -3,10 +3,21 @@ Reveal.initialize({
     transitionSpeed: 'slow',
     controls: false,
     touch: false,
-    progress: false
+    progress: false,
+    keyboard: false
 });
 
+Reveal.togglePause(true);
+
 var socket = io('/' + document.getElementById('namespace').value);
+
+socket.on('ready', function() {
+    Reveal.togglePause(false);
+});
+
+socket.on('pause', function() {
+    Reveal.togglePause(true);
+});
 
 socket.on('prev', function(msg) {
     Reveal.prev();

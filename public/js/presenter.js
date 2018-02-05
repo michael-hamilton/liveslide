@@ -1,6 +1,8 @@
 $(document).ready(function() {
     var socket = io('/' + document.getElementById('namespace').value);
 
+    socket.emit('ready');
+
     $('#control-prev').click(function() {
         socket.emit('prev');
     });

@@ -46,7 +46,6 @@ module.exports = function (io) {
     router.get('/present/:presentationID', function (req, res) {
         Presentation.findOne({ presentationID: req.params.presentationID }, function(err, presentation) {
             if(presentation) {
-                console.log(presentation);
                 presentations.push(new Presenter(io, presentation.presentationID, presentation.slideCount));
                 res.render('presenter', {nsp: presentation.presentationID});
             }
