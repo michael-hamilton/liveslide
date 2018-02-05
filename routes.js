@@ -2,6 +2,7 @@ module.exports = function (io) {
 
     var express = require('express');
     var router = express.Router();
+    var Presenter = require('./Presenter.js');
     var Presentation = require('./Presentation.js');
 
     router.get('/', function (req, res) {
@@ -17,13 +18,21 @@ module.exports = function (io) {
     });
 
     router.get('/view/:presentationID', function (req, res) {
-        if(presentations.find(p => p.presentationID == req.params.presentationID)) {
-            res.render('viewer', {nsp:req.params.presentationID});
-        }
-        else {
-            req.flash('error', 'could not find a presentation with that id');
-            res.redirect('/view');
-        }
+        Presentation.findOne({ presentationID: req.params.presentationID }, function(err, presentation) {
+            if(presentation) {
+                if (presentations.find(p => p.presentationID == presentation.presentationID)) {
+                    res.render('viewer', {nsp: presentation.presentationID, slideData: presentation.slideData});
+                }
+                else {
+                    req.flash('error', 'could not find a presentation with that id');
+                    res.redirect('/view');
+                }
+            }
+            else {
+                req.flash('error', 'could not find a presentation with that id');
+                res.redirect('/view');
+            }
+        });
     });
 
     router.get('/present', function (req, res) {
@@ -35,8 +44,49 @@ module.exports = function (io) {
     });
 
     router.get('/present/:presentationID', function (req, res) {
-        presentations.push(new Presentation(io, req.params.presentationID, 5));
-        res.render('presenter', {nsp:req.params.presentationID});
+        Presentation.findOne({ presentationID: req.params.presentationID }, function(err, presentation) {
+            if(presentation) {
+                console.log(presentation);
+                presentations.push(new Presenter(io, presentation.presentationID, presentation.slideCount));
+                res.render('presenter', {nsp: presentation.presentationID});
+            }
+            else {
+                req.flash('error', 'could not find a presentation with that id');
+                res.redirect('/present');
+            }
+        });
+    });
+
+    router.get('/make', function (req, res) {
+        res.render('maker', {});
+    });
+
+    router.get('/make2', function (req, res) {
+        res.render('maker2', {});
+    });
+
+    router.post('/make2', function (req, res) {
+        Presentation.update(
+        {
+            presentationID: req.body.presentationID,
+        },
+        {
+            presentationID: req.body.presentationID,
+            slideCount: req.body.slideCount,
+            slideData: req.body.slideData
+        },
+        {
+            upsert:true
+        },
+        function(err, presentation) {
+            if(err) {
+                req.flash('error', 'error creating presentation');
+            }
+            else {
+                req.flash('success', 'successfully created presentation');
+            }
+            res.render('maker2', {});
+        });
     });
 
     return router;
