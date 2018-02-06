@@ -6,11 +6,11 @@ module.exports = function (io) {
     var Presentation = require('./Presentation.js');
 
     router.get('/', function (req, res) {
-        res.render('presentation-finder', {});
+        res.render('presentation-finder', {active:'view'});
     });
 
     router.get('/view', function (req, res) {
-        res.render('presentation-finder', {});
+        res.render('presentation-finder', {active:'view'});
     });
 
     router.post('/view', function (req, res) {
@@ -36,7 +36,7 @@ module.exports = function (io) {
     });
 
     router.get('/present', function (req, res) {
-        res.render('presentation-starter', {});
+        res.render('presentation-starter', {active:'present'});
     });
 
     router.post('/present', function (req, res) {
@@ -61,7 +61,7 @@ module.exports = function (io) {
     });
 
     router.get('/make2', function (req, res) {
-        res.render('maker2', {});
+        res.render('maker2', {active:'make'});
     });
 
     router.post('/make2', function (req, res) {
