@@ -1,16 +1,10 @@
-html(lang="en")
-head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-    title liveslide
-    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
-    link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
-    link(rel="stylesheet" type="text/css" href="/css/presenter.css")
-    link(rel="stylesheet" type="text/css" href="/css/liveslide.css")
+extends layout
 
-body
+block content
+    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/css/presenter.css")
+
     input(id="namespace" type="hidden" value=presentation.nsp)
-    include partials/app-header
 
     div.controls
         div.container-fluid
@@ -50,4 +44,3 @@ body
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/socket.io/socket.io.js")
     script(src="/js/presenter.js")
-    script(src="/js/liveslide.js")
