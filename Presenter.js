@@ -14,6 +14,10 @@ class Presentation {
         this.nsp.on('connection', function (socket) {
             self.clients++;
 
+            if(!self.paused) {
+                self.resume();
+            }
+
             self.nsp.emit('clients', self.clients);
 
             self.loadCurrentSlide();
