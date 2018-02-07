@@ -1,4 +1,8 @@
 .nav .active {
   color: #000; }
 
+.main-app-header {
+  border-bottom: 1px solid #efefef;
+  margin-bottom: 2rem; }
+
 /*# sourceMappingURL=liveslide.css.map */

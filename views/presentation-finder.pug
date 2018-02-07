@@ -17,6 +17,6 @@ body
                     div.alert.alert-danger= messages.error
                 form(method="post" action="/view").mx-auto
                     div.form-group
-                        input(type="text" name="presentationID" placeholder="enter a presentation id").form-control.form-control-lg
+                        input(type="text" name="presentationID" placeholder="enter a presentation id" autocorrect="off" autocapitalize="none").form-control.form-control-lg
                     div.form-group
                         input(type="submit" value="view").form-control.btn.btn-dark

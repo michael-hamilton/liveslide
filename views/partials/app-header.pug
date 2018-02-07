@@ -1,10 +1,5 @@
-div.container-fluid
-    div.nav
-        a.nav-link(href="/view" class=active == 'view' ? 'active' : '') view
-        a.nav-link(href="/present" class=active == 'present' ? 'active' : '') present
-        a.nav-link(href="/make2" class=active == 'make' ? 'active' : '') make
-        a.nav-link.ml-auto(href="/login" class=active == 'login' ? 'active' : '') login
+include main-navigation
 
-h1.display-1.text-center liveslide
-    sub.h6 beta
-hr
+div.main-app-header
+    h1.display-1.text-center liveslide
+        sub.h6 beta

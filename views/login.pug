@@ -4,7 +4,6 @@ head
     meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
     title liveslide
     link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
-    link(rel="stylesheet" type="text/css" href="/css/finder.css")
     link(rel="stylesheet" type="text/css" href="/css/liveslide.css")
 
 body
@@ -15,8 +14,15 @@ body
             div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
                 if messages.error
                     div.alert.alert-danger= messages.error
-                form(method="post" action="/present").mx-auto
+                form(method="post" action="/login").mx-auto
                     div.form-group
-                        input(type="text" name="presentationID" placeholder="enter a presentation id" autocorrect="off" autocapitalize="none").form-control.form-control-lg
+                        input(type="text" name="username" placeholder="username").form-control.form-control-lg
                     div.form-group
-                        input(type="submit" value="present").form-control.btn.btn-dark
+                        input(type="password" name="password" placeholder="password").form-control.form-control-lg
+                    div.form-group
+                        input(type="submit" value="login").form-control.btn.btn-dark
+
+
+script(src="/js/reveal.js")
+script(src="/socket.io/socket.io.js")
+script(src="/js/viewer.js")

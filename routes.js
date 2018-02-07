@@ -21,7 +21,13 @@ module.exports = function (io) {
         Presentation.findOne({ presentationID: req.params.presentationID }, function(err, presentation) {
             if(presentation) {
                 if (presentations.find(p => p.presentationID == presentation.presentationID)) {
-                    res.render('viewer', {nsp: presentation.presentationID, slideData: presentation.slideData});
+                    res.render('viewer', {
+                        presentation: {
+                            nsp: presentation.presentationID,
+                            presentationName: presentation.presentationName,
+                            slideData: presentation.slideData
+                        }
+                    });
                 }
                 else {
                     req.flash('error', 'could not find a presentation with that id');
@@ -47,7 +53,14 @@ module.exports = function (io) {
         Presentation.findOne({ presentationID: req.params.presentationID }, function(err, presentation) {
             if(presentation) {
                 presentations.push(new Presenter(io, presentation.presentationID, presentation.slideCount));
-                res.render('presenter', {nsp: presentation.presentationID});
+                res.render('presenter', {
+                    presentation: {
+                        nsp: presentation.presentationID,
+                        name: presentation.presentationName,
+                        slideCount: presentation.slideCount
+                    },
+                    active: 'present'
+                });
             }
             else {
                 req.flash('error', 'could not find a presentation with that id');
@@ -57,20 +70,19 @@ module.exports = function (io) {
     });
 
     router.get('/make', function (req, res) {
-        res.render('maker', {});
+        res.render('maker', {
+            active: 'make'
+        });
     });
 
-    router.get('/make2', function (req, res) {
-        res.render('maker2', {active:'make'});
-    });
-
-    router.post('/make2', function (req, res) {
+    router.post('/make', function (req, res) {
         Presentation.update(
         {
             presentationID: req.body.presentationID,
         },
         {
             presentationID: req.body.presentationID,
+            presentationName: req.body.presentationName,
             slideCount: req.body.slideCount,
             slideData: req.body.slideData
         },
@@ -84,8 +96,18 @@ module.exports = function (io) {
             else {
                 req.flash('success', 'successfully created presentation');
             }
-            res.render('maker2', {});
+            res.render('maker', {
+                active: 'make'
+            });
         });
+    });
+
+    router.get('/make2', function (req, res) {
+        res.render('maker2', {active:'make'});
+    });
+
+    router.get('/login', function (req, res) {
+        res.render('login', {active:'login'});
     });
 
     return router;

@@ -9,7 +9,7 @@ head
     link(rel="stylesheet" type="text/css" href="/css/liveslide.css")
 
 body
-    input(id="namespace" type="hidden" value=nsp)
+    input(id="namespace" type="hidden" value=presentation.nsp)
     include partials/app-header
 
     div.controls
@@ -40,11 +40,12 @@ body
             div.row
                 div.col-md-12
                     p.samp.m-1.align-left: samp #[span#client-count 0] clients connected
-                    p.samp.m-1.align-right: samp.text-right current slide: #[span#current-slide 0]
-                    p.samp.m-1.align-right: samp.text-right presentation id: #{nsp}
+                    p.samp.m-1.align-right: samp.text-right current slide: #[span#current-slide 0] / #{presentation.slideCount}
+                    p.samp.m-1.align-right: samp.text-right presentation id: #{presentation.nsp}
+                    p.samp.m-1.align-right: samp.text-right presentation name: #{presentation.name}
 
     div.embed-responsive.embed-responsive-16by9
-        iframe(src="/view/" + nsp).embed-responsive-item
+        iframe(src="/view/" + presentation.nsp).embed-responsive-item
 
     script(src="/bower_components/jquery/dist/jquery.min.js")
     script(src="/socket.io/socket.io.js")
