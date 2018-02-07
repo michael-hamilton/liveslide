@@ -4,7 +4,7 @@ var http = require('http').Server(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var bodyParser = require('body-parser');
-var routes = require('./routes.js')(io);
+var routes = require('./routes.js');
 var session = require('express-session');
 var flash = require('express-flash');
 var cookieParser = require('cookie-parser');
@@ -13,6 +13,7 @@ var sessionStore = new session.MemoryStore;
 
 var presentations = [];
 global.presentations = presentations;
+global.io = io;
 
 mongoose.connect(process.env.MONGODB_URL);
 
