@@ -1,14 +1,30 @@
-extends layout
+doctype html
+html(lang="en")
 
-block content
-    body
-        link(rel="stylesheet" href="/css/reveal.css")
-        link(rel="stylesheet" href="/css/theme/night.css")
+head
+    meta(charset="utf-8")
+    meta(http-equiv="X-UA-Compatible" content="IE=edge")
+    meta(name="viewport" content="width=device-width, initial-scale=1")
 
-        input(id="namespace" type="hidden" value=presentation.nsp)
-        div(class="reveal")
-            div(class="slides") !{presentation.slideData}
+    title liveslide
 
-    script(src="/js/reveal.js")
-    script(src="/socket.io/socket.io.js")
-    script(src="/js/viewer.js")
+    meta(name="description" content="")
+    meta(name="author" content="liveslide")
+    meta(name="keywords" content="liveslide")
+    meta(name="robots" content="index, follow")
+    meta(name="mobile-web-app-capable" content="yes")
+    meta(name="apple-mobile-web-app-capable" content="yes")
+
+    link(rel="stylesheet" type="text/css" href="/css/liveslide.css")
+
+body
+    link(rel="stylesheet" href="/css/reveal.css")
+    link(rel="stylesheet" href="/css/theme/night.css")
+
+    input(id="namespace" type="hidden" value=presentation.nsp)
+    div(class="reveal")
+        div(class="slides") !{presentation.slideData}
+
+script(src="/socket.io/socket.io.js")
+script(src="/js/reveal.js")
+script(src="/js/viewer.js")
