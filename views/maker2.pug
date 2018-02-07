@@ -1,35 +1,28 @@
-html(lang="en")
-head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-    title liveslide
-    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
-    link(rel="stylesheet" type="text/css" href="/bower_components/bootstrap/dist/css/bootstrap.min.css")
-    link(rel="stylesheet" type="text/css" href="/bower_components/simditor/styles/simditor.css")
-    link(rel="stylesheet" type="text/css" href="/css/maker.css")
-    link(rel="stylesheet" type="text/css" href="/css/liveslide.css")
+extends layout
 
-body
-    include partials/app-header
+block content
+    body
+        link(rel="stylesheet" type="text/css" href="/bower_components/simditor/styles/simditor.css")
+        link(rel="stylesheet" type="text/css" href="/css/maker.css")
 
-    div.toolbar
-        button#new-slide.btn.btn-dark New Slide
-        button#delete-slide.btn.btn-danger Delete Slide
-        button#save.btn.btn-primary Save
+        div.toolbar
+            button#new-slide.btn.btn-dark New Slide
+            button#delete-slide.btn.btn-danger Delete Slide
+            button#save.btn.btn-primary Save
 
-    div.workspace
-        div.slides-wrapper
-            div.slide
-            div.slide
-            div.slide
-            div.slide
-            div.slide
-        div.editor
-            textarea#text-editor
+        div.workspace
+            div.slides-wrapper
+                div.slide
+                div.slide
+                div.slide
+                div.slide
+                div.slide
+            div.editor
+                textarea#text-editor
 
-    script(src="/bower_components/jquery/dist/jquery.min.js")
-    script(src="/bower_components/simple-module/lib/module.js")
-    script(src="/bower_components/simple-hotkeys/lib/hotkeys.js")
-    script(src="/bower_components/simditor/lib/simditor.js")
-    script(src="/socket.io/socket.io.js")
-    script(src="/js/maker.js")
+        script(src="/bower_components/jquery/dist/jquery.min.js")
+        script(src="/bower_components/simple-module/lib/module.js")
+        script(src="/bower_components/simple-hotkeys/lib/hotkeys.js")
+        script(src="/bower_components/simditor/lib/simditor.js")
+        script(src="/socket.io/socket.io.js")
+        script(src="/js/maker.js")

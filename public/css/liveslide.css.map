@@ -1,6 +1,6 @@
 {
 "version": 3,
-"mappings": "AAAA,YAAY;EACV,KAAK,EAAE,IAAI;;AAEb,gBAAgB;EACd,aAAa,EAAE,iBAAiB;EAChC,aAAa,EAAE,IAAI",
+"mappings": "AAAA,YAAY;EACV,KAAK,EAAE,OAAO;;AAEhB,gBAAgB;EACd,aAAa,EAAE,iBAAiB;EAChC,aAAa,EAAE,IAAI",
 "sources": ["liveslide.sass"],
 "names": [],
 "file": "liveslide.css"

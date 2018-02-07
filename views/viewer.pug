@@ -1,18 +1,14 @@
-html(lang="en")
-head
-    meta(charset="UTF-8")
-    meta(name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no")
-    title liveslide
-    link(rel="stylesheet" href="/css/reveal.css")
-    link(rel="stylesheet" href="/css/theme/night.css")
-    link(rel="stylesheet" type="text/css" href="/css/liveslide.css")
+extends layout
 
-body
-    input(id="namespace" type="hidden" value=presentation.nsp)
-    div(class="reveal")
-        div(class="slides") !{presentation.slideData}
+block content
+    body
+        link(rel="stylesheet" href="/css/reveal.css")
+        link(rel="stylesheet" href="/css/theme/night.css")
 
+        input(id="namespace" type="hidden" value=presentation.nsp)
+        div(class="reveal")
+            div(class="slides") !{presentation.slideData}
 
-script(src="/js/reveal.js")
-script(src="/socket.io/socket.io.js")
-script(src="/js/viewer.js")
+    script(src="/js/reveal.js")
+    script(src="/socket.io/socket.io.js")
+    script(src="/js/viewer.js")

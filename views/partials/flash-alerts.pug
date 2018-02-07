@@ -1,0 +1,18 @@
+//Partial that conditionally displays Express Flash messages as Bootstrap V4 contextual alerts
+
+if messages.primary
+    div.alert.alert-primary= messages.primary
+if messages.secondary
+    div.alert.alert-secondary= messages.secondary
+if messages.success
+    div.alert.alert-success= messages.success
+if messages.danger
+    div.alert.alert-danger= messages.danger
+if messages.warning
+    div.alert.alert-warning= messages.warning
+if messages.info
+    div.alert.alert-info= messages.info
+if messages.light
+    div.alert.alert-light= messages.light
+if messages.dark
+    div.alert.alert-light= messages.dark
