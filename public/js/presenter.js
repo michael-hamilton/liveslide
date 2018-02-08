@@ -2,6 +2,8 @@ $(document).ready(function() {
 
     var socket = io('/' + document.getElementById('namespace').value);
 
+    socket.emit('connected', {clientType: 'presenter'});
+
     socket.emit('ready');
 
     $('#control-prev').click(function() {

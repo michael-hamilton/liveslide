@@ -11,6 +11,8 @@ Reveal.togglePause(true);
 
 var socket = io('/' + document.getElementById('namespace').value);
 
+socket.emit('connected', {clientType: 'viewer'});
+
 socket.on('ready', function() {
     Reveal.togglePause(false);
 });
