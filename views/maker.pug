@@ -7,7 +7,7 @@ block content
     div.container-fluid
         include partials/flash-alerts
         div.row
-            div.col-md-3.col-sm-4
+            div.col-lg-3.col-md-4.col-sm-5.col-12
                 div.btn-group
                     button#add-slide.btn.btn-dark(onClick="m.addSlide()")
                         span(aria-hidden="true").oi.oi-plus
@@ -21,16 +21,16 @@ block content
                         span(aria-hidden="true").oi.oi-hard-drive
                         | &nbsp;
                         | save
-            div.col-md-4.col-sm-4
+            div.col-lg-5.col-md-4.col-sm-3.col-6
                 div.form-group
-                    input.form-control(type="text" placeholder="enter presentation id" name="presentationID" onchange="m.updatePresentationID(this)")
-            div.col-md-5.col-sm-4
+                    input.form-control(type="text" placeholder="presentation id" name="presentationID" onchange="m.updatePresentationID(this)")
+            div.col-lg-4.col-md-4.col-sm-4.col-6
                 div.form-group
-                    input#presentation-name.form-control(type="text" placeholder="enter a presentation name" name="presentationName" onchange="m.updatePresentationName(this)")
+                    input#presentation-name.form-control(type="text" placeholder="presentation name" name="presentationName" onchange="m.updatePresentationName(this)")
         div.row
-            div.col-md-3.slides-container
+            div.col-lg-3.col-md-4.col-sm-5.slides-container
                 ul#slides-list.slides-list
-            div.col-md-9
+            div.col-lg-9.col-md-8.col-sm-7
                 div.row
                     div.col-md-12
                         div.form-group

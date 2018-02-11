@@ -106,7 +106,9 @@ class Maker {
     }
 
     initLoadedPresentation(presentation) {
-        this.presentation = presentation;
+        if(presentation) {
+            this.presentation = presentation;
+        }
         this.renderSlides();
     }
 }

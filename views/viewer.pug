@@ -25,7 +25,7 @@ body
     div(class="reveal")
         div(class="slides")
             each slide in presentation.slideData
-                section= slide.content
+                section !{slide.content}
 
 script(src="/socket.io/socket.io.js")
 script(src="/js/reveal.js")
