@@ -4,26 +4,37 @@ block content
     link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
     link(rel="stylesheet" type="text/css" href="/css/maker.css")
 
-    div.container
+    div.container-fluid
+        include partials/flash-alerts
         div.row
-            div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
-                include partials/flash-alerts
+            div.col-md-3.col-sm-4
+                div.btn-group
+                    button#add-slide.btn.btn-dark(onClick="m.addSlide()")
+                        span(aria-hidden="true").oi.oi-plus
+                        | &nbsp;
+                        | add
+                    button.btn.btn-secondary(onclick="m.loadPresentation()")
+                        span(aria-hidden="true").oi.oi-hard-drive
+                        | &nbsp;
+                        | load
+                    button.btn.btn-primary(onclick="m.savePresentation()")
+                        span(aria-hidden="true").oi.oi-hard-drive
+                        | &nbsp;
+                        | save
+            div.col-md-4.col-sm-4
+                div.form-group
+                    input.form-control(type="text" placeholder="enter presentation id" name="presentationID" onchange="m.updatePresentationID(this)")
+            div.col-md-5.col-sm-4
+                div.form-group
+                    input#presentation-name.form-control(type="text" placeholder="enter a presentation name" name="presentationName" onchange="m.updatePresentationName(this)")
+        div.row
+            div.col-md-3.slides-container
+                ul#slides-list.slides-list
+            div.col-md-9
+                div.row
+                    div.col-md-12
+                        div.form-group
+                            textarea#slide-data.form-control(type="text" placeholder="enter slide data" name="slideData" rows="10" onchange="m.slideContentChange()" disabled)
 
-                form(method="post" action="/make")
-                    div.form-group
-                        label presentation id
-                        input.form-control(type="text" placeholder="enter presentation id" name="presentationID")
-                    div.form-group
-                        label presentation name
-                        input.form-control(type="text" placeholder="enter a presentation name" name="presentationName")
-                    div.form-group
-                        label slide count
-                        input.form-control(type="number" placeholder="enter number of slides" name="slideCount")
-                    div.form-group
-                        label slide data
-                        textarea.form-control(type="text" placeholder="enter slide data" name="slideData" rows="10")
-                    div.form-group.text-center
-                        button.btn.btn-primary(type="submit")
-                            span(aria-hidden="true").oi.oi-hard-drive
-                            | &nbsp;
-                            | save
+    script( src="/redom/redom.js")
+    script(src="/js/maker.js")

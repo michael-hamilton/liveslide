@@ -1,36 +1,30 @@
-.toolbar {
-  background-color: #efefef;
-  padding: 10px; }
+.slides-container {
+  border-right: 1px solid #efefef; }
 
-body {
-  display: flex;
-  flex-flow: column; }
+.slides-list {
+  list-style: none;
+  max-height: 360px;
+  overflow-y: auto;
+  padding-left: 0px; }
 
-.workspace {
-  height: 100%;
-  flex: 1;
-  display: flex;
-  flex-flow: row; }
+.slides-list-item {
+  padding: 10px;
+  transition: padding 0.25s; }
 
-.slides-wrapper {
-  flex: 1;
-  min-width: 200px;
-  width: 20%;
-  border-right: 2px solid #efefef;
-  padding: 12px;
-  overflow: scroll; }
+.slides-list-item span {
+  transition: padding 0.25s; }
 
-.slides-wrapper .slide {
-  border: 1px solid #efefef;
-  height: 25%;
-  min-height: 120px;
-  width: 100%;
-  max-width: 240px;
-  margin-bottom: 12px;
-  margin-left: auto;
-  margin-right: auto; }
+.slides-list-item:hover {
+  color: #007bff; }
 
-.editor {
-  flex: 3; }
+.slides-list-item:hover span {
+  padding-left: 10px; }
+
+.slides-list-item:nth-child(2n-1) {
+  background-color: #efefef; }
+
+.slides-list-item.active {
+  background-color: #007bff;
+  color: #fff; }
 
 /*# sourceMappingURL=maker.css.map */

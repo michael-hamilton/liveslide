@@ -23,7 +23,9 @@ body
 
     input(id="namespace" type="hidden" value=presentation.nsp)
     div(class="reveal")
-        div(class="slides") !{presentation.slideData}
+        div(class="slides")
+            each slide in presentation.slideData
+                section= slide.content
 
 script(src="/socket.io/socket.io.js")
 script(src="/js/reveal.js")

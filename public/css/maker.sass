@@ -1,35 +1,28 @@
-.toolbar
-  background-color: #efefef
+.slides-container
+  border-right: 1px solid #efefef
+
+.slides-list
+  list-style: none
+  max-height: 360px
+  overflow-y: auto
+  padding-left: 0px
+
+.slides-list-item
   padding: 10px
+  transition: padding .25s
 
-body
-  display: flex
-  flex-flow: column
+.slides-list-item span
+  transition: padding .25s
 
-.workspace
-  height: 100%
-  flex: 1
-  display: flex
-  flex-flow: row
+.slides-list-item:hover
+  color: #007bff
 
-.slides-wrapper
-  flex: 1
-  min-width: 200px
-  width: 20%
-  border-right: 2px solid #efefef
-  padding: 12px
-  overflow: scroll
+.slides-list-item:hover span
+  padding-left: 10px
 
-.slides-wrapper .slide
-  border: 1px solid #efefef
-  height: 25%
-  min-height: 120px
-  width: 100%
-  max-width: 240px
-  margin-bottom: 12px
-  margin-left: auto
-  margin-right: auto
+.slides-list-item:nth-child(2n-1)
+  background-color: #efefef
 
-.editor
-  //background-color: #000
-  flex: 3
+.slides-list-item.active
+  background-color: #007bff
+  color: #fff
