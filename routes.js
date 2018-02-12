@@ -21,7 +21,7 @@ router.get('/present/:presentationID', presentLib.findPresentation, presentLib.s
 
 router.get('/make', makeLib.renderMaker);
 
-router.get('/make/:presentationID', makeLib.findPresentation, makeLib.sendPresentation);
+router.get('/make/:presentationID', makeLib.findPresentation, makeLib.renderMaker);
 
 router.post('/make', makeLib.updatePresentation);
 

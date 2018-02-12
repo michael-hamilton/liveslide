@@ -24,7 +24,7 @@ block content
                         | save
             div.col-lg-5.col-md-4.col-sm-3.col-6
                 div.form-group
-                    input.form-control(type="text" placeholder="presentation id" name="presentationID" onchange="m.updatePresentationID(this)")
+                    input#presentationID.form-control(type="text" placeholder="presentation id" name="presentationID" onchange="m.updatePresentationID(this)" value=presentationID)
             div.col-lg-4.col-md-4.col-sm-4.col-6
                 div.form-group
                     input#presentation-name.form-control(type="text" placeholder="presentation name" name="presentationName" onchange="m.updatePresentationName(this)")
@@ -35,7 +35,6 @@ block content
                 div.row
                     div.col-md-12
                         div.form-group
-                            //textarea#slide-data.form-control(type="text" placeholder="enter slide data" name="slideData" rows="10" onchange="m.slideContentChange()" )
                             div(id="slide-data")
                             div
                                 pre(id="html-output")

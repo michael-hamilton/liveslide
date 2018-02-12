@@ -12,6 +12,7 @@ var io = require('socket.io')(http);
 var path = require('path');
 var bodyParser = require('body-parser');
 var routes = require('./routes.js');
+var api = require('./api.js');
 var session = require('express-session');
 var flash = require('express-flash');
 var cookieParser = require('cookie-parser');
@@ -68,6 +69,7 @@ app.use(session({
 
 //Middleware to enable routes.js
 app.use('/', routes);
+app.use('/api', api);
 
 
 //Start HTTP server on specified port

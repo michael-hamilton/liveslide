@@ -3,16 +3,19 @@ $ = (el) => document.getElementById(el);
 $$ = (el) => document.getElementsByClassName(el);
 
 class Maker {
-    constructor() {
+    constructor(id) {
         this.config={
             slidesListContainer: 'slides-list',
         };
         this.presentation = {
-            presentationID: '',
+            presentationID: id || '',
             presentationName: '',
             slideData: []
         };
         this.selectedSlide;
+        if(id) {
+            this.loadPresentation();
+        }
         this.addSlide();
         this.renderSlides();
         this.initEditor();
@@ -99,7 +102,7 @@ class Maker {
     }
 
     savePresentation() {
-        var url = '/make';
+        var url = '/api/make/' + this.presentation.presentationID;
 
         var presentation = this.presentation;
 
@@ -115,7 +118,7 @@ class Maker {
     }
 
     loadPresentation() {
-        var url = '/make/' + this.presentation.presentationID;
+        var url = '/api/make/' + this.presentation.presentationID;
 
         fetch(url, {
             method: 'GET',
@@ -135,4 +138,4 @@ class Maker {
     }
 }
 
-let m = new Maker();
+let m = new Maker($('presentationID').value);
