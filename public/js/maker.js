@@ -101,6 +101,10 @@ class Maker {
         this.presentation.slideData[this.selectedSlide].content = $('slide-data').content.innerHTML;
     }
 
+    startPresentation() {
+        window.location.href = '/present/' + this.presentation.presentationID;
+    }
+
     savePresentation() {
         var url = '/api/make/' + this.presentation.presentationID;
 

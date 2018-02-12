@@ -22,6 +22,10 @@ block content
                         span(aria-hidden="true").oi.oi-hard-drive
                         | &nbsp;
                         | save
+                    button.btn.btn-success(onclick="m.startPresentation()")
+                        span(aria-hidden="true").oi.oi-monitor
+                        | &nbsp;
+                        | present
             div.col-lg-5.col-md-4.col-sm-3.col-6
                 div.form-group
                     input#presentationID.form-control(type="text" placeholder="presentation id" name="presentationID" onchange="m.updatePresentationID(this)" value=presentationID)

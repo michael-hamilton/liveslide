@@ -37,6 +37,7 @@ block content
                     p.samp.m-1.align-right: samp.text-right current slide: #[span#current-slide 0] / #{presentation.slideCount}
                     p.samp.m-1.align-right: samp.text-right presentation id: #{presentation.nsp}
                     p.samp.m-1.align-right: samp.text-right presentation name: #{presentation.name}
+                    p.samp.m-1.align-right: a(href="/make/"+presentation.nsp): samp.text-right edit this presentation
 
     div.embed-responsive.embed-responsive-16by9
         iframe(src="/view/" + presentation.nsp).embed-responsive-item
