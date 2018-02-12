@@ -15,6 +15,24 @@ class Maker {
         this.selectedSlide;
         this.addSlide();
         this.renderSlides();
+        this.initEditor();
+    }
+
+    initEditor() {
+        pell.init({
+            element: $('slide-data'),
+            onChange: html => {
+                this.slideContentChange();
+            },
+            actions: [
+                'bold',
+                'italic',
+                'underline',
+                'heading1',
+                'heading2',
+                'paragraph'
+            ]
+        });
     }
 
     clickSlide(i) {
@@ -27,7 +45,7 @@ class Maker {
 
         $('presentation-name').value = this.presentation.presentationName;
 
-        $('slide-data').disabled = this.presentation.slideData.length > 0 ? false : true;
+        // $('slide-data').disabled = this.presentation.slideData.length > 0 ? false : true;
 
         for (var i in this.presentation.slideData) {
             const slide = this.presentation.slideData[i];
@@ -44,10 +62,14 @@ class Maker {
                 this.selectedSlide = $(this.config.slidesListContainer).children.length-1;
             }
             $(this.config.slidesListContainer).children[this.selectedSlide].classList.add('active');
-            $('slide-data').value = this.presentation.slideData[this.selectedSlide].content;
+            if($('slide-data').content) {
+                $('slide-data').content.innerHTML = this.presentation.slideData[this.selectedSlide].content;
+            }
         }
         else {
-            $('slide-data').value = "";
+            if($('slide-data').content) {
+                $('slide-data').content.innerHTML = "";
+            }
         }
     }
 
@@ -73,7 +95,7 @@ class Maker {
     }
 
     slideContentChange() {
-        this.presentation.slideData[this.selectedSlide].content = $('slide-data').value;
+        this.presentation.slideData[this.selectedSlide].content = $('slide-data').content.innerHTML;
     }
 
     savePresentation() {

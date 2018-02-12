@@ -2,6 +2,7 @@ extends layout
 
 block content
     link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
+    link(rel="stylesheet" type="text/css" href="/pell/pell.min.css")
     link(rel="stylesheet" type="text/css" href="/css/maker.css")
 
     div.container-fluid
@@ -34,7 +35,10 @@ block content
                 div.row
                     div.col-md-12
                         div.form-group
-                            textarea#slide-data.form-control(type="text" placeholder="enter slide data" name="slideData" rows="10" onchange="m.slideContentChange()" disabled)
+                            //textarea#slide-data.form-control(type="text" placeholder="enter slide data" name="slideData" rows="10" onchange="m.slideContentChange()" )
+                            div(id="slide-data")
+                            div
+                                pre(id="html-output")
 
-    script( src="/redom/redom.js")
+    script(src="/pell/pell.js")
     script(src="/js/maker.js")

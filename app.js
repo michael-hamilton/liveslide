@@ -39,8 +39,7 @@ app.set('view engine', 'pug');
 //Middleware to expose public routes
 app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
-app.use('/redom', express.static(__dirname + '/node_modules/redom/dist'));
-
+app.use('/pell', express.static(__dirname + '/node_modules/pell/dist'));
 
 //Middleware to enable bodyParser
 app.use(bodyParser.urlencoded({extended:true}));
