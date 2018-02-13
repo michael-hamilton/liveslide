@@ -112,6 +112,7 @@ class Maker {
 
         fetch(url, {
             method: 'POST',
+            credentials: true,
             body: JSON.stringify({presentation: presentation}),
             headers: new Headers({
                 'Content-Type': 'application/json'
@@ -126,6 +127,7 @@ class Maker {
 
         fetch(url, {
             method: 'GET',
+            credentials: true,
             headers: new Headers({
                 'Content-Type': 'application/json'
             })
