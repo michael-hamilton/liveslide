@@ -3,4 +3,7 @@ div.container-fluid
         a.nav-link(href="/view" class=active == 'view' ? 'active' : '') view
         a.nav-link(href="/present" class=active == 'present' ? 'active' : '') present
         a.nav-link(href="/make" class=active == 'make' ? 'active' : '') make
-        a.nav-link.ml-auto(href="/login" class=active == 'login' ? 'active' : '') login
+        if user
+            a.nav-link.ml-auto(href="/user/" + user.username class=active == 'login' ? 'active' : '')= user.username
+        else
+            a.nav-link.ml-auto(href="/login" class=active == 'login' ? 'active' : '') login

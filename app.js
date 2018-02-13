@@ -17,7 +17,10 @@ var session = require('express-session');
 var flash = require('express-flash');
 var cookieParser = require('cookie-parser');
 var mongoose = require('mongoose');
-
+var passport = require('passport');
+var crypto = require('crypto');
+var LocalStrategy = require('passport-local').Strategy;
+var User = require('./lib/models/User.js');
 
 //Set port specified in environment variable `port`, or 3000 by default
 const port = process.env.PORT || 3000;
@@ -42,6 +45,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/bower_components', express.static(__dirname + '/bower_components'));
 app.use('/pell', express.static(__dirname + '/node_modules/pell/dist'));
 
+
 //Middleware to enable bodyParser
 app.use(bodyParser.urlencoded({extended:true}));
 app.use(bodyParser.json());
@@ -65,6 +69,35 @@ app.use(session({
     resave: 'true',
     secret: process.env.cookie_secret
 }));
+
+
+//Initialize Passport local strategy, serialize, and deserialize
+passport.use(new LocalStrategy(
+    function(username, password, done) {
+        User.findOne({ username: username }, function (err, user) {
+            if (err) { return done(err); }
+            if (!user) { return done(null, false); }
+            if (user.verifyPassword(password) !== user.password) { return done(null, false); }
+            return done(null, user);
+        });
+    }
+));
+
+passport.serializeUser(function(user, cb) {
+    cb(null, user.id);
+});
+
+passport.deserializeUser(function(id, cb) {
+    console.log("id:",id);
+    User.findById(id, function (err, user) {
+        if (err) { return cb(err); }
+        cb(null, user);
+    });
+});
+
+//Initialize Passport middleware
+app.use(passport.initialize());
+app.use(passport.session());
 
 
 //Middleware to enable routes.js

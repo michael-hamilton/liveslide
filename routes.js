@@ -13,18 +13,20 @@ router.post('/view', viewLib.presentationFinderSubmit);
 
 router.get('/view/:presentationID', viewLib.findPresentation, viewLib.renderViewer);
 
-router.get('/present', presentLib.renderPresentationStarter);
+router.get('/present', loginLib.authenticateRoute, presentLib.renderPresentationStarter);
 
-router.post('/present', presentLib.presentationStarterSubmit);
+router.post('/present', loginLib.authenticateRoute, presentLib.presentationStarterSubmit);
 
-router.get('/present/:presentationID', presentLib.findPresentation, presentLib.startPresenter, presentLib.renderPresenter);
+router.get('/present/:presentationID', loginLib.authenticateRoute, presentLib.findPresentation, presentLib.startPresenter, presentLib.renderPresenter);
 
-router.get('/make', makeLib.renderMaker);
+router.get('/make', loginLib.authenticateRoute, makeLib.renderMaker);
 
-router.get('/make/:presentationID', makeLib.findPresentation, makeLib.renderMaker);
+router.get('/make/:presentationID', loginLib.authenticateRoute, makeLib.findPresentation, makeLib.renderMaker);
 
-router.post('/make', makeLib.updatePresentation);
+router.post('/make', loginLib.authenticateRoute, makeLib.updatePresentation);
 
-router.get('/login', loginLib.login);
+router.get('/login', loginLib.render);
+
+router.post('/login', loginLib.authenticate);
 
 module.exports = router;
