@@ -29,4 +29,8 @@ router.get('/login', loginLib.render);
 
 router.post('/login', loginLib.authenticate);
 
+router.get('/app', function(req, res) {
+    res.render('index');
+});
+
 module.exports = router;
