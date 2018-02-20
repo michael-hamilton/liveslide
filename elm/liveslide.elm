@@ -1,6 +1,6 @@
 module LiveSlide exposing (..)
 
-import Html exposing (text)
+import Html exposing (..)
 
 main =
     text "LiveSlide"
