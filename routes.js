@@ -25,8 +25,10 @@ router.get('/make/:presentationID', loginLib.authenticateRoute, makeLib.findPres
 
 router.post('/make', loginLib.authenticateRoute, makeLib.updatePresentation);
 
-router.get('/login', loginLib.render);
+router.get('/login', loginLib.redirectIfLoggedIn, loginLib.render);
 
 router.post('/login', loginLib.authenticate);
+
+router.get('/logout', loginLib.logout);
 
 module.exports = router;

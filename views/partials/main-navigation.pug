@@ -4,6 +4,12 @@ div.container-fluid
         a.nav-link(href="/present" class=active == 'present' ? 'active' : '') present
         a.nav-link(href="/make" class=active == 'make' ? 'active' : '') make
         if user
-            a.nav-link.ml-auto(href="/user/" + user.username class=active == 'login' ? 'active' : '')= user.username
+            a.nav-item.dropdown
+                a.nav-link.ml-auto(href="javascript:;" data-toggle="dropdown" role="button")= user.username
+                div.dropdown-menu
+                    a.dropdown-item.nav-link(href="/user/" + user.username class=active == 'account' ? 'active' : '') Account
+                    a.dropdown-item.nav-link(href="/user/" + user.username + "/presentations" class=active == 'presentation' ? 'active' : '') Presentations
+                    a.dropdown-item.nav-link(href="/logout") Logout
+
         else
             a.nav-link.ml-auto(href="/login" class=active == 'login' ? 'active' : '') login

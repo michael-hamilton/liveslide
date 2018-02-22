@@ -25,7 +25,6 @@ var User = require('./lib/models/User.js');
 //Set port specified in environment variable `port`, or 3000 by default
 const port = process.env.PORT || 3000;
 
-
 //Set global variables
 var presentations = [];
 global.presentations = presentations;
@@ -63,7 +62,7 @@ app.use(cookieParser(process.env.cookie_secret));
 var sessionStore = new session.MemoryStore;
 
 app.use(session({
-    cookie: { maxAge: 60000},
+    cookie: { expires: false },
     store: sessionStore,
     saveUninitialized: true,
     resave: 'true',
@@ -88,7 +87,6 @@ passport.serializeUser(function(user, cb) {
 });
 
 passport.deserializeUser(function(id, cb) {
-    console.log("id:",id);
     User.findById(id, function (err, user) {
         if (err) { return cb(err); }
         cb(null, user);
