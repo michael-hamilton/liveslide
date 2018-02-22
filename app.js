@@ -8,6 +8,7 @@
 var express = require('express');
 var app = express();
 var http = require('http').Server(app);
+var expressWs = require('express-ws')(app);
 var io = require('socket.io')(http);
 var path = require('path');
 var bodyParser = require('body-parser');
@@ -103,9 +104,14 @@ app.use(passport.session());
 //Middleware to enable routes.js
 app.use('/', routes);
 app.use('/api', api);
-
+app.use('/ws', function(ws, req) {
+    console.log("Connect")
+    ws.on('message', function(msg) {
+        console.log("Message: ", msg)
+    });
+});
 
 //Start HTTP server on specified port
-http.listen(port, function() {
+app.listen(port, function() {
     console.log("Server running on *:" + port);
 });
