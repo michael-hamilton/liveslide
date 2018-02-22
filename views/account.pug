@@ -1,0 +1,24 @@
+extends layout
+
+block content
+    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
+
+    div.container-fluid
+        include partials/flash-alerts
+
+        div.row
+            div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
+
+                h3.display-6.text-center my account
+
+                form(method="post" action="/user/" + user._id).mx-auto
+                    div.form-group
+                        input(type="text" name="username" placeholder="username" value=user.username).form-control.form-control-lg
+                    div.form-group
+                        input(type="password" name="password" placeholder="current password").form-control.form-control-lg
+                    div.form-group
+                        input(type="password" name="newPassword" placeholder="new password").form-control.form-control-lg
+                    div.form-group
+                        input(type="password" name="confirmNewPassword" placeholder="confirm password").form-control.form-control-lg
+                    div.form-group
+                        input(type="submit" value="update").form-control.btn.btn-dark

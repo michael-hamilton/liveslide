@@ -1,0 +1,19 @@
+extends layout
+
+block content
+    link(rel="stylesheet" type="text/css" href="/css/open-iconic-bootstrap.min.css")
+
+    div.container-fluid
+        include partials/flash-alerts
+
+        div.row
+            div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
+
+                h3.display-6.text-center my presentations
+
+                ul.list-group
+                    each presentation in user.presentations
+                        li.list-group-item.list-group-item-action
+                            span= presentation.presentationName
+                            a.align-right(aria-hidden="true" href="/make/" + presentation.presentationID).oi.oi-pencil
+                            a.align-right(aria-hidden="true" href="/present/" + presentation.presentationID).oi.oi-monitor

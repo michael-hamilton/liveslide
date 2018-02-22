@@ -3,6 +3,7 @@ var router = express.Router();
 var viewLib = require('./lib/view');
 var presentLib = require('./lib/present');
 var makeLib = require('./lib/make');
+var userLib = require('./lib/user');
 var loginLib = require('./lib/login');
 
 router.get('/', viewLib.renderPresentationFinder);
@@ -23,7 +24,11 @@ router.get('/make', loginLib.authenticateRoute, makeLib.renderMaker);
 
 router.get('/make/:presentationID', loginLib.authenticateRoute, makeLib.findPresentation, makeLib.renderMaker);
 
-router.post('/make', loginLib.authenticateRoute, makeLib.updatePresentation);
+router.post('/make', loginLib.authenticateRoute, makeLib.updatePresentation, userLib.addPresentationToUser);
+
+router.get('/user/:userID/account', loginLib.authenticateRoute, userLib.renderAccountForm);
+
+router.get('/user/:userID/presentations', loginLib.authenticateRoute, userLib.renderPresentationList);
 
 router.get('/login', loginLib.redirectIfLoggedIn, loginLib.render);
 
