@@ -28,7 +28,7 @@ router.post('/make', loginLib.authenticateRoute, makeLib.updatePresentation, use
 
 router.get('/user/:userID/account', loginLib.authenticateRoute, userLib.renderAccountForm);
 
-router.get('/user/:userID/presentations', loginLib.authenticateRoute, userLib.renderPresentationList);
+router.get('/user/:userID/presentations', loginLib.authenticateRoute, userLib.getUserPresentations, userLib.renderPresentationList);
 
 router.get('/login', loginLib.redirectIfLoggedIn, loginLib.render);
 

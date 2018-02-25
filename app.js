@@ -22,6 +22,7 @@ var crypto = require('crypto');
 var LocalStrategy = require('passport-local').Strategy;
 var User = require('./lib/models/User.js');
 
+// new User({username: 'mhamilton', password: 'password'}).save();
 
 //Set port specified in environment variable `port`, or 3000 by default
 const port = process.env.PORT || 3000;

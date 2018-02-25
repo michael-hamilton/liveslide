@@ -5,11 +5,11 @@ div.container-fluid
         a.nav-link(href="/make" class=active == 'make' ? 'active' : '') make
         if user
             a.nav-item.dropdown
-                a.nav-link.ml-auto(href="javascript:;" data-toggle="dropdown" role="button")= user.username
+                a.nav-link.ml-auto(href="javascript:;" data-toggle="dropdown" role="button" class=active == 'account' || active == 'presentations' ? 'active' : '')= user.username
                 div.dropdown-menu
-                    a.dropdown-item.nav-link(href="/user/" + user.username + "/account" class=active == 'account' ? 'active' : '') Account
-                    a.dropdown-item.nav-link(href="/user/" + user.username + "/presentations" class=active == 'presentation' ? 'active' : '') Presentations
-                    a.dropdown-item.nav-link(href="/logout") Logout
+                    a.dropdown-item.nav-link(href="/user/" + user.username + "/account" class=active == 'account' ? 'active' : '') account
+                    a.dropdown-item.nav-link(href="/user/" + user.username + "/presentations" class=active == 'presentations' ? 'active' : '') presentations
+                    a.dropdown-item.nav-link(href="/logout") logout
 
         else
             a.nav-link.ml-auto(href="/login" class=active == 'login' ? 'active' : '') login

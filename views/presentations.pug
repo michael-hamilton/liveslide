@@ -9,11 +9,12 @@ block content
         div.row
             div.col-lg-6.offset-lg-3.col-sm-8.offset-sm-2
 
-                h3.display-6.text-center my presentations
+                h3.display-6.text-center.font-weight-light my presentations
 
                 ul.list-group
-                    each presentation in user.presentations
+                    each presentation in presentations
                         li.list-group-item.list-group-item-action
                             span= presentation.presentationName
-                            a.align-right(aria-hidden="true" href="/make/" + presentation.presentationID).oi.oi-pencil
-                            a.align-right(aria-hidden="true" href="/present/" + presentation.presentationID).oi.oi-monitor
+                            a.float-right.ml-4.mt-1.text-danger(aria-hidden="true" href="javascript:;").oi.oi-delete
+                            a.float-right.ml-2.mt-1(aria-hidden="true" href="/make/" + presentation.presentationID).oi.oi-pencil
+                            a.float-right.mr-2.mt-1(aria-hidden="true" href="/present/" + presentation.presentationID).oi.oi-monitor
