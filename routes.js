@@ -6,34 +6,52 @@ var makeLib = require('./lib/make');
 var userLib = require('./lib/user');
 var loginLib = require('./lib/login');
 
-router.get('/', viewLib.renderPresentationFinder);
+router.route('/')
+    .get(viewLib.renderPresentationFinder)
+;
 
-router.get('/view', viewLib.renderPresentationFinder);
+router.route('/view')
+    .get(viewLib.renderPresentationFinder)
+    .post(viewLib.presentationFinderSubmit)
+;
 
-router.post('/view', viewLib.presentationFinderSubmit);
+router.route('/view/:presentationID')
+    .get(viewLib.findPresentation, viewLib.renderViewer)
+;
 
-router.get('/view/:presentationID', viewLib.findPresentation, viewLib.renderViewer);
+router.route('/present')
+    .get(loginLib.authenticateRoute, presentLib.renderPresentationStarter)
+    .post(loginLib.authenticateRoute, presentLib.presentationStarterSubmit)
+;
 
-router.get('/present', loginLib.authenticateRoute, presentLib.renderPresentationStarter);
+router.route('/present/:presentationID')
+    .get(loginLib.authenticateRoute, presentLib.findPresentation, presentLib.startPresenter, presentLib.renderPresenter)
+;
 
-router.post('/present', loginLib.authenticateRoute, presentLib.presentationStarterSubmit);
+router.route('/make')
+    .get(loginLib.authenticateRoute, makeLib.renderMaker)
+    .post(loginLib.authenticateRoute, makeLib.updatePresentation, userLib.addPresentationToUser)
+;
 
-router.get('/present/:presentationID', loginLib.authenticateRoute, presentLib.findPresentation, presentLib.startPresenter, presentLib.renderPresenter);
+router.route('/make/:presentationID')
+    .get(loginLib.authenticateRoute, makeLib.findPresentation, makeLib.renderMaker)
+;
 
-router.get('/make', loginLib.authenticateRoute, makeLib.renderMaker);
+router.route('/user/:userID/account')
+    .get(loginLib.authenticateRoute, userLib.renderAccountForm)
+;
 
-router.get('/make/:presentationID', loginLib.authenticateRoute, makeLib.findPresentation, makeLib.renderMaker);
+router.route('/user/:userID/presentations')
+    .get(loginLib.authenticateRoute, userLib.getUserPresentations, userLib.renderPresentationList)
+;
 
-router.post('/make', loginLib.authenticateRoute, makeLib.updatePresentation, userLib.addPresentationToUser);
+router.route('/login')
+    .get(loginLib.redirectIfLoggedIn, loginLib.render)
+    .post(loginLib.authenticate)
+;
 
-router.get('/user/:userID/account', loginLib.authenticateRoute, userLib.renderAccountForm);
-
-router.get('/user/:userID/presentations', loginLib.authenticateRoute, userLib.getUserPresentations, userLib.renderPresentationList);
-
-router.get('/login', loginLib.redirectIfLoggedIn, loginLib.render);
-
-router.post('/login', loginLib.authenticate);
-
-router.get('/logout', loginLib.logout);
+router.route('/logout')
+    .get(loginLib.logout)
+;
 
 module.exports = router;
