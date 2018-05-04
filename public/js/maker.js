@@ -63,7 +63,7 @@ class Maker {
             const slide = slides.find(s => s.index == i);
             const className = 'slides-list-item';
             const onclick = 'm.clickSlide(' + i + ')';
-            const content = 'Slide ' + (parseInt(i) + 1) + ' - Order ' + slide.order;
+            const content = 'Slide ' + (parseInt(i) + 1);
 
             const markup = `<li class="${className}" onClick="${onclick}" data-index="${slide.index}" data-order="${slide.order}"><span>${content}</span><span class="delete-slide oi oi-delete float-right" onclick='m.deleteSlide(` + i + `)'></span></li>`;
 
@@ -170,8 +170,19 @@ class Maker {
     initLoadedPresentation(presentation) {
         if(presentation) {
             this.presentation = presentation;
+            this.updateSlidesWithOrder();
         }
         this.renderSlides();
+    }
+
+    //hack to support previously saved presentations without ordered slides
+    updateSlidesWithOrder() {
+        let slides = this.presentation.slideData;
+        for(var i in slides) {
+            slides[i].index = parseInt(slides[i].index || i);
+            slides[i].order = parseInt(slides[i].order || i);
+        }
+        console.log(slides);
     }
 }
 
