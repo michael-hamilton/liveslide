@@ -1,5 +1,7 @@
+$light-gray: #e6e6e6
+
 .slides-container
-  border-right: 1px solid #efefef
+  border-right: 1px solid $light-gray
 
 .slides-list
   list-style: none
@@ -11,19 +13,20 @@
   padding: 10px
   transition: padding .25s
 
-.slides-list-item span
-  line-height: 2
-  transition: padding .25s
+  & span
+    line-height: 2
+    transition: padding .25s
 
-.slides-list-item:hover
-  color: #007bff
+  &:hover
+    color: #007bff
 
-.slides-list-item:hover span
-  padding-left: 10px
+  &:hover
+    span
+      padding-left: 10px
 
-.slides-list-item:nth-child(2n-1)
-  background-color: #efefef
+  &:nth-child(2n-1)
+    background-color: $light-gray
 
-.slides-list-item.active
-  background-color: #007bff
-  color: #fff
+  &.active
+    background-color: #007bff
+    color: #fff

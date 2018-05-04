@@ -19,6 +19,7 @@ class Maker {
         this.addSlide();
         this.renderSlides();
         this.initEditor();
+        this.initSort();
     }
 
     initEditor() {
@@ -38,28 +39,37 @@ class Maker {
         });
     }
 
+    initSort() {
+        const sortable = Sortable.create($('slides-list'), {
+            onUpdate: (e) => this.updateSlideOrder(e)
+        });
+    }
+
     clickSlide(i) {
         this.selectedSlide = i;
         this.renderSlides();
     }
 
-    renderSlides(){
+    renderSlides() {
+        const slides = this.presentation.slideData;
+
         $(this.config.slidesListContainer).innerHTML = '';
 
         $('presentation-name').value = this.presentation.presentationName;
 
         // $('slide-data').disabled = this.presentation.slideData.length > 0 ? false : true;
 
-        for (var i in this.presentation.slideData) {
-            const slide = this.presentation.slideData[i];
+        for (var i in slides) {
+            const slide = slides.find(s => s.index == i);
             const className = 'slides-list-item';
             const onclick = 'm.clickSlide(' + i + ')';
-            const content = 'Slide ' + (parseInt(i) + 1);
+            const content = 'Slide ' + (parseInt(i) + 1) + ' - Order ' + slide.order;
 
-            const markup = `<li class="${className}" onClick="${onclick}"><span>${content}</span><span class="oi oi-delete float-right" onclick='m.deleteSlide(` + i + `)'></span></li>`;
+            const markup = `<li class="${className}" onClick="${onclick}" data-index="${slide.index}" data-order="${slide.order}"><span>${content}</span><span class="delete-slide oi oi-delete float-right" onclick='m.deleteSlide(` + i + `)'></span></li>`;
 
             $(this.config.slidesListContainer).innerHTML += markup;
         }
+
         if($(this.config.slidesListContainer).children.length > 0) {
             if(this.selectedSlide > $(this.config.slidesListContainer).children.length-1) {
                 this.selectedSlide = $(this.config.slidesListContainer).children.length-1;
@@ -77,10 +87,11 @@ class Maker {
     }
 
     addSlide() {
+        const slideCount = this.getSlideCount();
         if(!this.selectedSlide) {
             this.selectedSlide = 0;
         }
-        this.presentation.slideData.push({content:""});
+        this.presentation.slideData.push({index:slideCount, order: (slideCount == 0 ? 0 : slideCount), content: ""});
         this.renderSlides();
     }
 
@@ -97,8 +108,28 @@ class Maker {
         this.presentation.presentationName = el.value;
     }
 
+    getSlideCount() {
+        return this.presentation.slideData.length;
+    }
+
     slideContentChange() {
         this.presentation.slideData[this.selectedSlide].content = $('slide-data').content.innerHTML;
+    }
+
+    updateSlideOrder(event) {
+        const slides = $$('slides-list-item');
+        let tmpSlides = [];
+        let tmpSelected = this.selectedSlide;
+
+        for(var i = 0; i < slides.length; i++) {
+            tmpSlides[i] = this.presentation.slideData.find(s => s.index == parseInt(slides[i].getAttribute('data-order')));
+            tmpSlides[i].order = i;
+        }
+
+        this.presentation.slideData = tmpSlides.slice();
+        this.selectedSlide = this.presentation.slideData.find(s => s.order == parseInt(tmpSelected)).index;
+
+        this.renderSlides();
     }
 
     startPresentation() {

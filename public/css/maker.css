@@ -1,5 +1,5 @@
 .slides-container {
-  border-right: 1px solid #efefef; }
+  border-right: 1px solid #e6e6e6; }
 
 .slides-list {
   list-style: none;
@@ -10,22 +10,17 @@
 .slides-list-item {
   padding: 10px;
   transition: padding 0.25s; }
-
-.slides-list-item span {
-  line-height: 2;
-  transition: padding 0.25s; }
-
-.slides-list-item:hover {
-  color: #007bff; }
-
-.slides-list-item:hover span {
-  padding-left: 10px; }
-
-.slides-list-item:nth-child(2n-1) {
-  background-color: #efefef; }
-
-.slides-list-item.active {
-  background-color: #007bff;
-  color: #fff; }
+  .slides-list-item span {
+    line-height: 2;
+    transition: padding 0.25s; }
+  .slides-list-item:hover {
+    color: #007bff; }
+  .slides-list-item:hover span {
+    padding-left: 10px; }
+  .slides-list-item:nth-child(2n-1) {
+    background-color: #e6e6e6; }
+  .slides-list-item.active {
+    background-color: #007bff;
+    color: #fff; }
 
 /*# sourceMappingURL=maker.css.map */
