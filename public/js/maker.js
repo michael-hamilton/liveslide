@@ -34,7 +34,8 @@ class Maker {
                 'underline',
                 'heading1',
                 'heading2',
-                'paragraph'
+                'paragraph',
+                'image'
             ]
         });
     }

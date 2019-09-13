@@ -109,3 +109,7 @@ app.use('/api', api);
 http.listen(port, function() {
     console.log("Server running on *:" + port);
 });
+
+console.log(crypto.createHmac('sha256', 'N@t1v1ty!')
+    .update(process.env.cookie_secret)
+    .digest('hex'));
